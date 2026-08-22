@@ -1,139 +1,57 @@
-# 13chan Distributed Imageboard
+# Cyberdeck InterComm
 
-A distributed imageboard application that uses WebRTC for peer-to-peer content sharing, implemented as a Progressive Web App (PWA).
+**The communications app for the Cyberdeck.**
 
-## Features
+InterComm is a WebAX application that gives the Cyberdeck a home for every
+conversation — a **meta-messaging area where messages from all apps are
+collected** (think Google Wave). It installs into the
+[Cyberdeck-Launcher](https://github.com/Senneseph/Cyberdeck-Launcher) like any
+other WebAX app and talks to the rest of the ecosystem through
+[comlink](https://github.com/Senneseph/comlink).
 
-- **Distributed Architecture**: Content is shared directly between users using WebRTC peer-to-peer connections
-- **BitTorrent-Inspired Content Distribution**: Content is split into pieces and distributed efficiently across the network
-- **Progressive Web App**: Works offline and can be installed on devices
-- **Minimal Server Requirements**: Only needs a lightweight signaling server for peer discovery
-- **Reduced Bandwidth Costs**: Images and posts are shared directly between peers
-- **Background Sync**: Content syncs automatically when peers connect
-- **Responsive Design**: Works on desktop and mobile devices
+> This repository was restored to its original intent. The 13chan imageboard
+> docs that previously lived here are preserved on the `legacy-13chan` branch.
 
-## How It Works
+## The idea
 
-1. **Peer Discovery**: Users connect to a signaling server to discover other peers
-2. **WebRTC Connections**: Direct peer-to-peer connections are established using WebRTC
-3. **Content Sharing**: Posts (threads, comments, images) are shared directly between peers
-4. **Local Storage**: All content is stored locally using IndexedDB
-5. **Background Sync**: Service workers handle syncing content in the background
+Apps on a Cyberdeck generate messages constantly — notifications, results,
+requests, shares. InterComm is where they all land, in one place, arranged like
+a conversation. It is a **Google Wave-style meta-arrangement**:
 
-## Getting Started
+- **Wave-like shared spaces** — messages from different apps and people are
+  collected into shared, editable conversations, not siloed inboxes.
+- **App-to-app and person-to-person** — both a chat app and a message bus with
+  a face.
+- **First-class Cyberdeck citizen** — installable from the Launcher, visible in
+  the share sheet, backed by the OS shims.
 
-### Prerequisites
+## How it fits the ecosystem
 
-- Node.js (for running the signaling server)
-- A modern web browser that supports WebRTC and Service Workers
+| Layer | Project | Role in InterComm |
+|---|---|---|
+| Transport / trust | [comlink](https://github.com/Senneseph/comlink) | secure inter-app + inter-process messaging between apps and services |
+| UI | [jellicule](https://github.com/Senneseph/jellicule) | native `<jel-*>` components for conversations, threads, message lists |
+| Business logic | [jcule](https://github.com/Senneseph/jcule) | BLC: message state machine (sent → delivered → read), routing |
+| Storage | [memory-core](https://github.com/Senneseph/memory-core) | local message history + sync |
+| Host | [Cyberdeck-Launcher](https://github.com/Senneseph/Cyberdeck-Launcher) | install, launch, capability registry, share sheet |
+| Services | [CyberdeckOS](https://github.com/Senneseph/CyberdeckOS) | privileged backend (identity, push/relay) when needed |
 
-### Installation
+## Current state
 
-1. Clone this repository:
+**Foundation** — this is a fresh start on the original proposal:
 
-   ```bash
-   git clone https://github.com/13-chan/13chan-distributed.git
-   cd 13chan-distributed
-   ```
+- [PROPOSAL.md](./PROPOSAL.md) — the original one-line vision that started this project.
+- [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md) — the intended design.
+- `app/manifest.json` — WebAX manifest so the Launcher can install it.
 
-2. Install dependencies:
+The app itself is next: message model, comlink transport, wave-style UI.
 
-   ```bash
-   npm install
-   ```
+## Getting started
 
-3. Start the signaling server:
-
-   ```bash
-   npm start
-   ```
-
-4. In a separate terminal, start the development server:
-
-   ```bash
-   npm run dev
-   ```
-
-5. Open your browser and navigate to `http://localhost:8000`
-
-## Documentation
-
-Comprehensive documentation is available in the `docs` directory:
-
-- [User Guide](docs/USER_GUIDE.md) - Guide for end users
-- [Technical Documentation](docs/TECHNICAL.md) - Detailed technical specifications
-- [Integration Guide](docs/INTEGRATION_GUIDE.md) - How to integrate with the network
-- [API Reference](docs/API_REFERENCE.md) - Quick reference for the API
-- [Architecture Overview](docs/ARCHITECTURE.md) - High-level system design
-
-To serve the documentation locally:
-
-```bash
-npm run docs:serve
-```
-
-Then open your browser to `http://localhost:8001`
-
-To generate a PDF version of the documentation:
-
-```bash
-npm run docs
-```
-
-## Deployment
-
-### Signaling Server
-
-The signaling server needs to be deployed to a publicly accessible server with WebSocket support. Options include:
-
-- Heroku
-- DigitalOcean
-- AWS
-- Any VPS provider
-
-Update the `SIGNALING_SERVER` constant in `js/webrtc.js` to point to your deployed signaling server.
-
-### Web Application
-
-The web application can be deployed to any static hosting service:
-
-- GitHub Pages
-- Netlify
-- Vercel
-- Firebase Hosting
-
-## Architecture
-
-### Client-Side
-
-- **IndexedDB**: Local storage for posts, threads, and peer information
-- **WebRTC**: Peer-to-peer connections for content sharing
-- **Service Worker**: Background processing and offline support
-
-### Server-Side
-
-- **Signaling Server**: Simple WebSocket server for peer discovery and connection establishment
-
-## Limitations
-
-- **Initial Connection**: Requires an internet connection to discover peers
-- **Content Availability**: Content is only available if at least one peer has it
-- **Scalability**: WebRTC connections can be resource-intensive with many peers
-- **NAT Traversal**: Some network configurations may prevent direct peer connections
-
-## Future Improvements
-
-- **Content Moderation**: Implement distributed moderation mechanisms
-- **End-to-End Encryption**: Add encryption for private boards
-- **Peer Discovery**: Implement alternative peer discovery methods (DHT, etc.)
-- **Content Persistence**: Implement a distributed storage solution for long-term content availability
-- **Bandwidth Optimization**: Improve image compression and data transfer efficiency
+The app is not built yet. To see where it's headed, read the
+[architecture](docs/ARCHITECTURE.md); to see the ecosystem it plugs into, read
+the [WebAX README](https://github.com/Senneseph/WebAX).
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Acknowledgments
-
-- WebRTC for enabling peer-to-peer web communications
-- The PWA community for advancing web application capabilities
+MIT

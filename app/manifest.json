@@ -1,0 +1,31 @@
+{
+  "name": "Cyberdeck InterComm",
+  "short_name": "InterComm",
+  "description": "The communications app for the Cyberdeck — a meta-messaging area where messages from all apps are collected. Think Google Wave.",
+  "start_url": "index.html",
+  "scope": "/Cyberdeck-InterComm/",
+  "display": "standalone",
+  "background_color": "#0b0b10",
+  "theme_color": "#0b0b10",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "webax": {
+    "version": "0.1.0",
+    "publisher": "github.com/Senneseph",
+    "package_id": "cyberdeck-intercomm",
+    "permissions": ["storage", "network"],
+    "provides": [
+      { "intent": "chat", "type": "message", "formats": ["text/plain", "application/json"] }
+    ],
+    "requires": [
+      { "intent": "comlink-transport" }
+    ],
+    "services": []
+  }
+}
