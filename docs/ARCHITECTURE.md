@@ -1,4 +1,4 @@
-# InterComm — Architecture
+# Intercom — Architecture
 
 The original proposal, verbatim:
 
@@ -9,7 +9,7 @@ This document expands that into a design for the Cyberdeck.
 
 ## Concept
 
-InterComm is a **meta-messaging area**: a single home where messages produced
+Intercom is a **meta-messaging area**: a single home where messages produced
 by any app or person on the Cyberdeck are collected and arranged as
 conversations. It is:
 
@@ -24,7 +24,7 @@ conversations. It is:
 
 ```
         ┌──────────────────────────────┐
-        │       InterComm (app)        │
+        │       Intercom (app)        │
         │  wave spaces · threads · UI  │
         └──────┬──────────┬────────────┘
                │          │
@@ -52,7 +52,7 @@ lastActivity }`.
 
 ### 2. Transport — comlink
 
-InterComm does not invent a protocol. Person-to-person and app-to-app traffic
+Intercom does not invent a protocol. Person-to-person and app-to-app traffic
 rides [comlink](https://github.com/Senneseph/comlink): trust boundaries,
 permission model, origin verification. A local (same-device) conversation uses
 the intra-browser transport; a remote one uses the network transport — the app
@@ -75,9 +75,9 @@ server except what CyberdeckOS provides (identity, optional relay).
 
 ### 5. Host — Launcher + CyberdeckOS
 
-The `webax` manifest field declares what InterComm provides (e.g. the `chat`
+The `webax` manifest field declares what Intercom provides (e.g. the `chat`
 intent) and requires (e.g. comlink transport, an identity service). The
-Launcher's capability registry lets other apps hand conversations to InterComm
+Launcher's capability registry lets other apps hand conversations to Intercom
 through the share sheet — "send this to a conversation".
 
 ## Phases

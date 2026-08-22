@@ -1,8 +1,8 @@
-# Cyberdeck InterComm
+# Intercom
 
 **The communications app for the Cyberdeck.**
 
-InterComm is a WebAX application that gives the Cyberdeck a home for every
+Intercom is a WebAX application that gives the Cyberdeck a home for every
 conversation — a **meta-messaging area where messages from all apps are
 collected** (think Google Wave). It installs into the
 [Cyberdeck-Launcher](https://github.com/Senneseph/Cyberdeck-Launcher) like any
@@ -15,7 +15,7 @@ other WebAX app and talks to the rest of the ecosystem through
 ## The idea
 
 Apps on a Cyberdeck generate messages constantly — notifications, results,
-requests, shares. InterComm is where they all land, in one place, arranged like
+requests, shares. Intercom is where they all land, in one place, arranged like
 a conversation. It is a **Google Wave-style meta-arrangement**:
 
 - **Wave-like shared spaces** — messages from different apps and people are
@@ -27,7 +27,7 @@ a conversation. It is a **Google Wave-style meta-arrangement**:
 
 ## How it fits the ecosystem
 
-| Layer | Project | Role in InterComm |
+| Layer | Project | Role in Intercom |
 |---|---|---|
 | Transport / trust | [comlink](https://github.com/Senneseph/comlink) | secure inter-app + inter-process messaging between apps and services |
 | UI | [jellicule](https://github.com/Senneseph/jellicule) | native `<jel-*>` components for conversations, threads, message lists |
